@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Task Tracker</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Tracker</h1>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Add a new task...">
+            <button id="addButton">Add</button>
+        </div>
+<div class="columns">
+    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>To-Do</h2>
+        <ul id="todoList" class="task-list" ondragstart="drag(event)">
+        </ul>
+    </div>
+    <div class="column" id="doing" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Doing</h2>
+        <ul id="doingList" class="task-list" ondragstart="drag(event)">
+        </ul>
+    </div>
+    <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+         <h2>Done</h2>
+            <ul id="doneList" class="task-list" ondragstart="drag(event)">
+            </ul>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
