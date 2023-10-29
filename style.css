@@ -87,3 +87,76 @@ li button {
     border-radius: 3px;
     cursor: pointer;
 }
+
+/* ... (your existing CSS code) ... */
+
+/* Style the sidebar */
+.sidebar {
+    display: none;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:#333;
+    padding-top: 20px;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Sidebar header */
+.sidebar h2 {
+    color: white;
+    text-align: center;
+}
+
+/* Sidebar links */
+.sidebar ul {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.sidebar ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    padding: 8px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    color: #f1f1f1;
+}
+
+/* Active link */
+.sidebar ul li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.open-sidebar-button {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* ... (your existing CSS code) ... */

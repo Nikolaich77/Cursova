@@ -63,3 +63,16 @@ function drop(event) {
         }
     }
 }
+
+// Function to open the sidebar
+function openSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.style.display = "block";
+}
+
+// Function to close the sidebar
+function closeSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.remove("sidebar-opened");
+}
+
