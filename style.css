@@ -46,7 +46,7 @@ button {
 .columns {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .column {
@@ -55,7 +55,6 @@ button {
     background-color: #f9f9f9;
     border-radius: 3px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    
 }
 
 .column h2 {
@@ -70,93 +69,89 @@ button {
 li {
     border: 1px solid #ddd;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px;
     background-color: #fff;
     border-radius: 3px;
-    cursor: grab; /* Change cursor to indicate draggability */
+    cursor: grab;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-height: 150px;
+    overflow: auto;
 }
 
 li span {
-    flex: 1;
+    margin-bottom: 10px;
+    word-wrap: break-word;
 }
 
 li button {
     background-color: #FF4136;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
+    padding: 5px 10px;
+    align-self: flex-end;
 }
 
-/* ... (your existing CSS code) ... */
+li button:hover {
+    background-color: #D83B30;
+}
 
-/* Style the sidebar */
+/* Sidebar styling */
+/* Стиль для бокового навігатора */
 .sidebar {
-    display: none;
-    width: 300px;
+    width: 250px;
     position: fixed;
     top: 0;
     left: 0;
-    background-color:#333;
-    padding-top: 20px;
     height: 100%;
-    z-index: 1;
-}
-
-/* Sidebar header */
-.sidebar h2 {
-    color: white;
-    text-align: center;
-}
-
-/* Sidebar links */
-.sidebar ul {
-    list-style-type: none;
-    padding: 10px;
-}
-
-.sidebar ul li {
-    margin: 0;
-    padding: 0;
-}
-
-.sidebar ul li a {
-    padding: 8px 25px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    display: block;
-}
-
-.sidebar ul li a:hover {
-    color: #f1f1f1;
-}
-
-/* Active link */
-.sidebar ul li a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-.open-sidebar-button {
-    position: fixed;
-    left: 10px;
-    top: 10px;
     background-color: #333;
+    padding-top: 20px;
+    z-index: 1;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+    overflow-y: auto; /* Додано вертикальну прокрутку, якщо контент занадто довгий */
 }
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
+
+/* Стиль для логотипу в боковому навігаторі */
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стиль для посилань в боковому навігаторі */
+/* Відключення стандартних маркерів списку та встановлення відступів */
+.sidebar .nav-links li {
+    list-style: none; /* Відключає стандартні маркери списку (крапки або числа). */
+    margin: 5px; /* Зовнішні відступи навколо кожного елемента списку. */
+    padding: 5px; /* Внутрішні відступи всередині кожного елемента списку. */
+    text-align: center; /* Відцентровує текст горизонтально. */
+}
+
+/* Стилізація посилань у навігаційному меню */
+.sidebar .nav-links a {
+    display: block; /* Робить посилання блоковими, займаючи всю горизонтальну ширину. */
+    color: black; /* Білий колір тексту посилань. */
+    text-decoration: none; /* Відключає підкреслення для тексту посилань. */
+}
+
+/* Зміна стилю посилань при наведенні курсора */
+.sidebar .nav-links a:hover {
+    background-color: #555; /* Задає сірий колір фону посилань при наведенні курсора. */
 }
 
 
-/* ... (your existing CSS code) ... */
+
+
+.logo-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #0074D9; /* Стиль для фону */
+}
+
+.logo {
+    color: #fff; /* Колір тексту */
+    font-size: 24px; /* Розмір тексту */
+}

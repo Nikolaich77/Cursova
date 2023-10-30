@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const todoList = document.getElementById("todoList");
     const doingList = document.getElementById("doingList");
     const doneList = document.getElementById("doneList");
+    const closeSidebarButton = document.querySelector(".close-button");
 
     addButton.addEventListener("click", addTask);
     taskInput.addEventListener("keyup", function (event) {
@@ -36,17 +37,57 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    function createEditForm(initialText, initialImportance, taskElement) {
+        const editForm = document.createElement("div");
+        editForm.innerHTML = `
+            <input type="text" id="editTaskInput" value="${initialText}">
+            <label for="importance">Важливість:</label>
+            <select id="importance" name="importance">
+                <option value="low">Низька</option>
+                <option value="medium">Середня</option>
+                <option value="high">Висока</option>
+            </select>
+            <button id="saveButton">Зберегти</button>
+        `;
+        const importanceSelect = editForm.querySelector("#importance");
+        importanceSelect.value = initialImportance;
+
+        const saveButton = editForm.querySelector("#saveButton");
+        saveButton.addEventListener("click", function () {
+            const editedText = editForm.querySelector("#editTaskInput").value;
+            const editedImportance = editForm.querySelector("#importance").value;
+
+            if (editedText.trim() !== "") {
+                const updatedTask = document.createElement("li");
+                updatedTask.innerHTML = `
+                    <span class="task-text">${editedText}</span>
+                    <button class="edit-button">Edit</button>
+                    <button class="remove-button">Remove</button>
+                `;
+                updatedTask.setAttribute("data-importance", editedImportance);
+                todoList.replaceChild(updatedTask, taskElement);
+                addRemoveListener(updatedTask);
+                addEditListener(updatedTask);
+                updatedTask.setAttribute("draggable", true);
+                updatedTask.setAttribute("id", taskElement.getAttribute("id"));
+                editForm.remove();
+            }
+        });
+
+        document.querySelector(".container").insertBefore(editForm, document.querySelector(".columns"));
+    }
+
     function drag(event) {
         event.dataTransfer.setData("text", event.target.id);
     }
 });
 
-// Allow drop functionality
+// Дозволити функціональність
 function allowDrop(event) {
     event.preventDefault();
 }
 
-// Drop functionality
+// Перетягування функціональності
 function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
@@ -56,7 +97,7 @@ function drop(event) {
         const li = document.getElementById(data);
         event.target.appendChild(li);
     } else {
-        // Handle moving tasks between columns
+        // Обробка переміщення завдань між стовпцями
         const sourceList = document.getElementById(data);
         if (sourceList) {
             targetList.appendChild(sourceList);
@@ -64,15 +105,10 @@ function drop(event) {
     }
 }
 
-// Function to open the sidebar
+// Функція для відкриття бічної панелі
 function openSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.style.display = "block";
 }
 
-// Function to close the sidebar
-function closeSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.remove("sidebar-opened");
-}
-
+closeSidebarButton.addEventListener("click", closeSidebar);
