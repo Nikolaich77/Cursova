@@ -5,14 +5,17 @@ body {
     padding: 0;
 }
 
+/* Стиль для .container на іншій частині сторінки */
+/* Стиль для .container на іншій частині сторінки */
 .container {
-    max-width: 900px;
+    
     margin: 0 auto;
     text-align: center;
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 270px; /* Збільште лівий відступ, щоб уникнути перекриття сайдбаром */
 }
 
 h1 {
@@ -100,58 +103,49 @@ li button:hover {
     background-color: #D83B30;
 }
 
-/* Sidebar styling */
-/* Стиль для бокового навігатора */
+/* Стиль для бокового навігатора (sidebar) */
+/* Стиль для бокового навігатора (sidebar) */
 .sidebar {
+    background-color: #333;
+    color: #fff;
     width: 250px;
-    position: fixed;
+    padding: 20px;
+    position: fixed; /* Закріпити сайдбар */
     top: 0;
     left: 0;
-    height: 100%;
-    background-color: #333;
-    padding-top: 20px;
-    z-index: 1;
-    color: white;
-    overflow-y: auto; /* Додано вертикальну прокрутку, якщо контент занадто довгий */
-}
-
-/* Стиль для логотипу в боковому навігаторі */
-.sidebar .logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Стиль для посилань в боковому навігаторі */
-/* Відключення стандартних маркерів списку та встановлення відступів */
-.sidebar .nav-links li {
-    list-style: none; /* Відключає стандартні маркери списку (крапки або числа). */
-    margin: 5px; /* Зовнішні відступи навколо кожного елемента списку. */
-    padding: 5px; /* Внутрішні відступи всередині кожного елемента списку. */
-    text-align: center; /* Відцентровує текст горизонтально. */
-}
-
-/* Стилізація посилань у навігаційному меню */
-.sidebar .nav-links a {
-    display: block; /* Робить посилання блоковими, займаючи всю горизонтальну ширину. */
-    color: black; /* Білий колір тексту посилань. */
-    text-decoration: none; /* Відключає підкреслення для тексту посилань. */
-}
-
-/* Зміна стилю посилань при наведенні курсора */
-.sidebar .nav-links a:hover {
-    background-color: #555; /* Задає сірий колір фону посилань при наведенні курсора. */
+    height: 100vh; /* Споживати всю висоту сторінки */
+    overflow: auto; /* Додавання прокрутки, якщо контент не поміщається */
 }
 
 
 
 
 .logo-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #0074D9; /* Стиль для фону */
+    text-align: center; /* Вирівнювання лого по центру */
+    margin-bottom: 50px; /* Відступи вниз для лого-контейнера */
 }
 
 .logo {
-    color: #fff; /* Колір тексту */
-    font-size: 24px; /* Розмір тексту */
+    font-size: 30px; /* Розмір шрифту для лого */
+}
+
+.nav-links {
+    list-style: none; /* Видалення маркерів списку */
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 20px 0; /* Відступи між пунктами меню */
+}
+
+.nav-links a {
+    text-decoration: none; /* Видалення підкреслення для посилань */
+    color: #000000; /* Колір тексту посилань */
+    font-size: 16px; /* Розмір шрифту посилань */
+    transition: color 0.3s; /* Плавна зміна кольору тексту при наведенні */
+    text-align: center;
+}
+
+.nav-links a:hover {
+    color: #f0a500; /* Колір тексту при наведенні */
 }

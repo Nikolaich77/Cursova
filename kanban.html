@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,39 +12,37 @@
             <h2 class="logo">Task Tracker</h2>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Головна</a></li>
-            <li><a href="#">Завдання</a></li>
-            <li><a href="#">Налаштування</a></li>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#">Tasks</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Exit</a></li>
         </ul>
     </div>
-    
-    
-    <div class="container">
+<div class="container">
         <h1>Task Tracker</h1>
         <div class="input-container">
-            <input type="text" id="taskInput" placeholder="Add a new task...">
-            <button id="addButton">Add</button>
+            <input type="text" id="taskInput" placeholder="Додати нове завдання...">
+            <button id="addButton">Add Task</button>
         </div>
-<div class="columns">
-    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h2>To-Do</h2>
-        <ul id="todoList" class="task-list" ondragstart="drag(event)">
-        </ul>
-    </div>
-    <div class="column" id="doing" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h2>Doing</h2>
-        <ul id="doingList" class="task-list" ondragstart="drag(event)">
-        </ul>
-    </div>
-    <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
-         <h2>Done</h2>
-            <ul id="doneList" class="task-list" ondragstart="drag(event)">
-            </ul>
+        <div class="columns">
+            <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>To Do</h2>
+                <ul id="todoList" class="task-list" ondragstart="drag(event)">
+                </ul>
+            </div>
+            <div class="column" id="doing" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>In Progress</h2>
+                <ul id="doingList" class="task-list" ondragstart="drag(event)">
+                </ul>
+            </div>
+            <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2>Done</h2>
+                <ul id="doneList" class="task-list" ondragstart="drag(event)">
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<script src="script.js"></script>
 
-
+    <script src="script.js"></script>
 </body>
 </html>
