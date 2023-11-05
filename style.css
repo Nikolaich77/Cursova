@@ -5,17 +5,14 @@ body {
     padding: 0;
 }
 
-/* Стиль для .container на іншій частині сторінки */
-/* Стиль для .container на іншій частині сторінки */
 .container {
-    
     margin: 0 auto;
     text-align: center;
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-left: 270px; /* Збільште лівий відступ, щоб уникнути перекриття сайдбаром */
+    margin-left: 270px;
 }
 
 h1 {
@@ -26,37 +23,37 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 input[type="text"] {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    width: 60%;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #0074D9;
+    padding: 10px 10px;
+    background-color: #ff416c;
     color: #fff;
     border: none;
-    border-radius: 3px;
-    margin-left: 10px;
+    border-radius: 10px;
+    margin-left: 20px;
     cursor: pointer;
 }
 
 .columns {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .column {
-    width: 30%;
+    width: 31%;
     padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 3px;
+    background-color: #e9e6e6;
+    border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -65,87 +62,112 @@ button {
 }
 
 .task-list {
-    list-style-type: none;
-    padding: 0;
+    list-style-type:none;
+    padding: 20px;
 }
 
-li {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    background-color: #fff;
-    border-radius: 3px;
-    cursor: grab;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-height: 150px;
-    overflow: auto;
-}
 
-li span {
-    margin-bottom: 10px;
-    word-wrap: break-word;
-}
-
-li button {
-    background-color: #FF4136;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px 10px;
-    align-self: flex-end;
-}
 
 li button:hover {
     background-color: #D83B30;
 }
 
-/* Стиль для бокового навігатора (sidebar) */
-/* Стиль для бокового навігатора (sidebar) */
 .sidebar {
-    background-color: #333;
+    background-color: #ff416c;
     color: #fff;
-    width: 250px;
+    width: 240px;
     padding: 20px;
-    position: fixed; /* Закріпити сайдбар */
+    position: fixed;
     top: 0;
     left: 0;
-    height: 100vh; /* Споживати всю висоту сторінки */
-    overflow: auto; /* Додавання прокрутки, якщо контент не поміщається */
+    height: 100vh;
+    overflow: auto;
 }
 
-
-
-
 .logo-container {
-    text-align: center; /* Вирівнювання лого по центру */
-    margin-bottom: 50px; /* Відступи вниз для лого-контейнера */
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .logo {
-    font-size: 30px; /* Розмір шрифту для лого */
+    font-size: 30px;
 }
 
 .nav-links {
-    list-style: none; /* Видалення маркерів списку */
+    list-style: none;
     padding: 0;
 }
 
 .nav-links li {
-    margin: 20px 0; /* Відступи між пунктами меню */
+    margin: 20px 0;
 }
 
 .nav-links a {
-    text-decoration: none; /* Видалення підкреслення для посилань */
-    color: #000000; /* Колір тексту посилань */
-    font-size: 16px; /* Розмір шрифту посилань */
-    transition: color 0.3s; /* Плавна зміна кольору тексту при наведенні */
+    
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #3c4043;
+    cursor: pointer;
+    display: inline-flex;
+    fill: currentcolor;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: .25px;
+    line-height: normal;
+    max-width: 100%;
+    overflow: visible;
+    padding: 2px 24px;
+    position: relative;
     text-align: center;
-}
+    text-transform: none;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+    will-change: transform,opacity;
+    z-index: 0;
+  }
 
 .nav-links a:hover {
-    color: #f0a500; /* Колір тексту при наведенні */
+    background: #F6F9FE;
+  color: #174ea6;
+}
+
+.nav-links a:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.nav-links a:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.nav-links a:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.nav-links a:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.nav-links a:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.nav-links a:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.nav-links a:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
