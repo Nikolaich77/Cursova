@@ -1,3 +1,21 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+import {  doc, deleteDoc, collection, addDoc, getFirestore, getDocs, setDoc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBP_d27uap1flFd-7ZvYSfIaRGZr542Tp0",
+    authDomain: "kursach-42c5f.firebaseapp.com",
+    projectId: "kursach-42c5f",
+    storageBucket: "kursach-42c5f.appspot.com",
+    messagingSenderId: "62833531875",
+    appId: "1:62833531875:web:3dbfa653f46241e681ded6"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const userName = "user1";
+
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
     const addButton = document.getElementById("addButton");
@@ -5,15 +23,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const doingList = document.getElementById("doingList");
     const doneList = document.getElementById("doneList");
 
-    addButton.addEventListener("click", addTask);
+
+    getDocs(collection(db, userName)).then((result) => {
+        result.forEach((record) => {
+            // console.log(record.id)
+            addTask(record.data().text, record.id)
+        })
+    })
+
+    function createTask(){
+        const taskText = taskInput.value.trim();
+        addDoc(collection(db, userName), {text : taskText}).then((doc_ref) => {
+            addTask(taskText, doc_ref.id);
+        });
+    }
+
+    addButton.addEventListener("click", createTask);
     taskInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
-            addTask();
+            createTask();
         }
     });
 
-    function addTask() {
-        const taskText = taskInput.value.trim();
+    function addTask(taskText, doc_id) {
+
         if (taskText !== "") {
             const li = document.createElement("li");
             li.innerHTML = `
@@ -23,31 +56,35 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             todoList.appendChild(li);
             taskInput.value = "";
-            addRemoveListener(li);
-            addEditListener(li);
+
+            
+            addRemoveListener(li, doc_id);
+            addEditListener(li, doc_id);
+            
             li.setAttribute("draggable", true);
             li.setAttribute("id", "task-" + new Date().getTime());
             li.addEventListener("dragstart", drag);
         }
     }
 
-    function addRemoveListener(li) {
+    function addRemoveListener(li, doc_id) {
         const removeButton = li.querySelector(".remove-button");
         removeButton.addEventListener("click", function () {
+            deleteDoc(doc(db, userName, doc_id))
             li.remove();
         });
     }
 
-    function addEditListener(li) {
+    function addEditListener(li, doc_id) {
         const editButton = li.querySelector(".edit-button");
         editButton.addEventListener("click", function () {
             const taskText = li.querySelector("span").textContent;
             const textColor = getComputedStyle(li.querySelector("span")).color; // Отримати поточний колір тексту
-            createEditForm(taskText, textColor, li);
+            createEditForm(taskText, textColor, li, doc_id);
         });
     }
 
-    function createEditForm(initialText, textColor, taskElement) {
+    function createEditForm(initialText, textColor, taskElement, doc_id) {
         const editForm = document.createElement("div");
         editForm.innerHTML = `
             <input type="text" id="editTaskInput" value="${initialText}">
@@ -64,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
         saveButton.addEventListener("click", function () {
             const editedText = editForm.querySelector("#editTaskInput").value;
             const editedTextColor = editForm.querySelector("#taskColor").value;
+
+            setDoc(doc(db, userName, doc_id), {text : editedText})
 
             if (editedText.trim() !== "") {
                 taskElement.querySelector("span").textContent = editedText;
