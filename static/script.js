@@ -1,4 +1,4 @@
-const userName = "user1";
+const userID = localStorage.getItem("userID");
 
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const doneList = document.getElementById("doneList");
 
 
-    fetch(`http://localhost:8000/${userName}/notes`).then((response) => {
+    fetch(`http://localhost:8000/${userID}/notes`).then((response) => {
         return response.json();
     }).then((result) => {
         result.forEach((record, id) => {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     })
 
-    // getDocs(collection(db, userName)).then((result) => {
+    // getDocs(collection(db, userID)).then((result) => {
     //     result.forEach((record) => {
     //         // console.log(record.id)
     //         addTask(record.data().text, record.id)
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createTask(){
         const taskText = taskInput.value.trim();
 
-        fetch(`http://localhost:8000/${userName}/notes`, {
+        fetch(`http://localhost:8000/${userID}/notes`, {
             method : "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Error" + response.status);
             }
         });
-        // addDoc(collection(db, userName), {text : taskText}).then((doc_ref) => {
+        // addDoc(collection(db, userID), {text : taskText}).then((doc_ref) => {
         //     addTask(taskText, doc_ref.id);
         // });
     }
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function addRemoveListener(li, id) {
         const removeButton = li.querySelector(".remove-button");
         removeButton.addEventListener("click", function () {
-            fetch(`http://localhost:8000/${userName}/notes/${id}`, {method : "DELETE"}).then((response) => {
+            fetch(`http://localhost:8000/${userID}/notes/${id}`, {method : "DELETE"}).then((response) => {
                 if (response.status === 200) {
                     li.remove();
                 }
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const editedText = editForm.querySelector("#editTaskInput").value;
             const editedTextColor = editForm.querySelector("#taskColor").value;
 
-            fetch(`http://localhost:8000/${userName}/notes/${id}/update`, {
+            fetch(`http://localhost:8000/${userID}/notes/${id}/update`, {
                 method : "PUT",
                 headers : {
                     "Content-Type" : "application/json"
@@ -166,7 +166,7 @@ function drop(event) {
     if (targetList.id == 'doingList') position = 1;
     else if (targetList.id == 'doneList') position = 2;
 
-    fetch(`http://localhost:8000/${userName}/notes/${data.replace('task-', '')}/change_status`, {
+    fetch(`http://localhost:8000/${userID}/notes/${data.replace('task-', '')}/change_status`, {
         method : "PUT",
         headers : {
             "Content-Type" : "application/json"

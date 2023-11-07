@@ -7,12 +7,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="loginstyle.css" />
+    <link rel="stylesheet" href="/static/loginstyle.css" />
   </head>
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="#" id="signUpForm">
           <h1>Create Account</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -20,14 +20,14 @@
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
+          <input id="signUpName" type="text" placeholder="Name" />
+          <input id="signUpEmail" type="email" placeholder="Email" />
+          <input id="signUpPassword" type="password" placeholder="Password" />
+          <button type="submit">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in-container">
-        <form action="#">
+        <form action="#" id="signInForm">
           <h1>Sign in</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -35,10 +35,10 @@
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>or use your account</span>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input id="signInEmail" type="email" placeholder="Email" />
+          <input id="signInPassword" type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <button type="submit">Sign In</button>
         </form>
       </div>
       <div class="overlay-container">
@@ -58,6 +58,6 @@
         </div>
       </div>
     </div>
-    <script src="login.js"></script>
+    <script src="/static/login.js" defer></script>
   </body>
 </html>
