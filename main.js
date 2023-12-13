@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const app = express();
@@ -17,7 +16,11 @@ app.get('/login', (req, res) => {
 
 app.get('/kanban', (req, res) => {
     res.sendFile(__dirname + '/public/kanban.html');
-})
+});
+
+app.get('/home', (req, res) => {
+    res.sendFile(__dirname + '/public/home.html');
+});
 
 app.post('/login/signin', (req, res) => {
     try {

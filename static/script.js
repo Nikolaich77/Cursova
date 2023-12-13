@@ -7,25 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const doingList = document.getElementById("doingList");
     const doneList = document.getElementById("doneList");
 
-
+// Запит на сервер для отримання завдань користувача
     fetch(`http://localhost:8000/${userID}/notes`).then((response) => {
         return response.json();
     }).then((result) => {
+        // Відобразити завдання на сторінці
         result.forEach((record, id) => {
             addTask(record.text, id, record.color, record.position);
         })
     })
-
-    // getDocs(collection(db, userID)).then((result) => {
-    //     result.forEach((record) => {
-    //         // console.log(record.id)
-    //         addTask(record.data().text, record.id)
-    //     })
-    // })
-
     function createTask(){
         const taskText = taskInput.value.trim();
 
+    // Відправлення запиту на сервер для додавання нового завдання
         fetch(`http://localhost:8000/${userID}/notes`, {
             method : "POST",
             headers : {
@@ -34,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body : JSON.stringify({text : taskText, color : "black", position : 0})
         }).then((response) => {
             if (response.status === 200) {
+            // Додавання завдання на сторінку після успішного відправлення на сервер
                 response.json().then((result) => {
                 addTask(taskText, result, "black");
                 });
@@ -42,9 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Error" + response.status);
             }
         });
-        // addDoc(collection(db, userID), {text : taskText}).then((doc_ref) => {
-        //     addTask(taskText, doc_ref.id);
-        // });
+       
     }
 
     addButton.addEventListener("click", createTask);
@@ -87,9 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function addRemoveListener(li, id) {
         const removeButton = li.querySelector(".remove-button");
         removeButton.addEventListener("click", function () {
+             // Відправлення запиту на сервер для видалення завдання
             fetch(`http://localhost:8000/${userID}/notes/${id}`, {method : "DELETE"}).then((response) => {
                 if (response.status === 200) {
-                    li.remove();
+                    li.remove(); // Видалення завдання зі сторінки після успішного видалення на сервері
                 }
             })
         });
@@ -121,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         saveButton.addEventListener("click", function () {
             const editedText = editForm.querySelector("#editTaskInput").value;
             const editedTextColor = editForm.querySelector("#taskColor").value;
-
+             // Відправлення запиту на сервер для оновлення тексту та кольору завдання
             fetch(`http://localhost:8000/${userID}/notes/${id}/update`, {
                 method : "PUT",
                 headers : {
@@ -166,6 +160,7 @@ function drop(event) {
     if (targetList.id == 'doingList') position = 1;
     else if (targetList.id == 'doneList') position = 2;
 
+    // Відправлення запиту на сервер для зміни статусу завдання
     fetch(`http://localhost:8000/${userID}/notes/${data.replace('task-', '')}/change_status`, {
         method : "PUT",
         headers : {
@@ -185,3 +180,4 @@ function drop(event) {
         }
     }
 }
+

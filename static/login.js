@@ -12,8 +12,6 @@ signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
 
-// const signInForm = document.signInFrom;
-
 signInForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const email = document.getElementById("signInEmail").value;
@@ -56,3 +54,6 @@ signUpForm.addEventListener("submit", (event) => {
     }
   });
 });
+
+
+
