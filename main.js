@@ -5,7 +5,6 @@ const app = express();
 const port = 8000;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://test:test@cluster0.hurnxsp.mongodb.net/?retryWrites=true&w=majority";
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
 function initDB(){
     const client = new MongoClient(uri, {
@@ -33,7 +32,7 @@ function dbAddUser(uid, name, email){
 async function dbVerifyUser(uid){
     try{
         users = await collection.findOne({ uid: uid })
-        if (await users) {
+        if (await users.length > 0) {
             return true;
         }else {
             return false;
@@ -135,12 +134,12 @@ app.post('/login/signup', (req, res) => {
     try {
         var hash = crypto.createHash('sha1').update(req.body.email + req.body.password).digest('hex');
         dbVerifyUser(hash).then((result) => {
+            console.log(result);
             if (result) {
                 res.sendStatus(409);
             } else {
                 console.log('register : ' + hash);
                 dbAddUser(hash, req.body.name, req.body.email);
-                users.push({uid: hash, name: req.body.name, email: req.body.email, notes: []});
                 res.status(200).send(hash);
             }
         });
@@ -206,4 +205,5 @@ app.delete('/:userID/notes/:noteId', (req, res) => {
     }
 });
 
+console.log('Server running at http://localhost:' + port + '/');
 app.listen(port);
