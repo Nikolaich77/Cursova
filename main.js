@@ -134,14 +134,16 @@ app.post('/login/signin', (req, res) => {
 app.post('/login/signup', (req, res) => {
     try {
         var hash = crypto.createHash('sha1').update(req.body.email + req.body.password).digest('hex');
-        if (users.find(user => user.uid === hash)) {
-            res.sendStatus(409);
-        } else {
-            console.log('register : ' + hash);
-            dbAddUser(hash, req.body.name, req.body.email);
-            users.push({uid: hash, name: req.body.name, email: req.body.email, notes: []});
-            res.status(200).send(hash);
-        }
+        dbVerifyUser(hash).then((result) => {
+            if (result) {
+                res.sendStatus(409);
+            } else {
+                console.log('register : ' + hash);
+                dbAddUser(hash, req.body.name, req.body.email);
+                users.push({uid: hash, name: req.body.name, email: req.body.email, notes: []});
+                res.status(200).send(hash);
+            }
+        });
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
